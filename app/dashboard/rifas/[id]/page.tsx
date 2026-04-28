@@ -9,7 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { api } from '@/lib/api';
-import { BACKEND_URL } from '@/lib/constants';
+import { Raffle, TicketOrder } from '@/lib/types';
 
 const orderStatusVariant: Record<string, 'secondary' | 'success' | 'destructive'> = {
   pending: 'secondary',
