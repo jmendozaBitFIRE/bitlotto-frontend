@@ -3,7 +3,6 @@ import { ExternalLink, Pencil, Eye } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Raffle } from '@/lib/types';
-import { BACKEND_URL } from '@/lib/constants';
 
 const statusVariant: Record<string, 'success' | 'secondary' | 'destructive'> = {
   active: 'success',
@@ -24,9 +23,7 @@ interface RifaCardProps {
 export function RifaCard({ raffle }: RifaCardProps) {
   const sold = raffle.soldCount ?? 0;
   const progress = raffle.totalTickets > 0 ? (sold / raffle.totalTickets) * 100 : 0;
-  const imageUrl = raffle.prizeImage
-    ? raffle.prizeImage.startsWith('http') ? raffle.prizeImage : `${BACKEND_URL}${raffle.prizeImage}`
-    : null;
+  const imageUrl = raffle.prizeImage ?? null;
 
   return (
     <Card className="group max-w-[320px] transition-all duration-300 hover:border-brand/20">

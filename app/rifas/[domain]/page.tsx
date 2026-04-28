@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { Loader2, Upload, CheckCircle2 } from 'lucide-react';
 import { PublicRaffle, Ticket } from '@/lib/types';
 
-import { API_URL as API, BACKEND_URL as BACKEND } from '@/lib/constants';
+const API = '/api';
 const RESERVE_SECONDS = 15 * 60;
 
 type Phase = 'selecting' | 'reserved' | 'buyer-info' | 'payment' | 'done';
@@ -189,9 +189,7 @@ export default function PublicRafflePage() {
 
   if (!raffle) return null;
 
-  const imageUrl = raffle.prizeImage
-    ? raffle.prizeImage.startsWith('http') ? raffle.prizeImage : `${BACKEND}${raffle.prizeImage}`
-    : null;
+  const imageUrl = raffle.prizeImage ?? null;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-[system-ui]">

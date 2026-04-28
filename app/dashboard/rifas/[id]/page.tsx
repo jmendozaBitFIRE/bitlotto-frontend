@@ -160,7 +160,7 @@ export default function RaffleDetailPage() {
                     <TableCell>
                       {order.receiptImage ? (
                         <button
-                          onClick={() => setPreviewImage(`${BACKEND_URL}${order.receiptImage}`)}
+                          onClick={() => setPreviewImage(order.receiptImage)}
                           className="text-xs text-brand hover:text-gold-400 underline underline-offset-2 transition-colors"
                         >
                           Ver comprobante

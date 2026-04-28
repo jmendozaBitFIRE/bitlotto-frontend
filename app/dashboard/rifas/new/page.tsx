@@ -8,8 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { api } from '@/lib/api';
 
-import { BACKEND_URL } from '@/lib/constants';
-
 export default function NewRifaPage() {
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -38,16 +36,9 @@ export default function NewRifaPage() {
     try {
       const formData = new FormData();
       formData.append('file', file);
-      const token = (await import('@/lib/auth')).getAccessToken();
-      const res = await fetch(`${BACKEND_URL}/api/raffles/upload/image`, {
-        method: 'POST',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
+      const data = await api('/raffles/upload/image', { method: 'POST', body: formData });
       setForm((f) => ({ ...f, prizeImage: data.url }));
-      setPreview(`${BACKEND_URL}${data.url}`);
+      setPreview(data.url);
     } catch (err: any) {
       setError(err.message || 'Error al subir la imagen');
     } finally {

@@ -10,8 +10,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { api } from '@/lib/api';
 import { Raffle } from '@/lib/types';
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') ?? 'http://localhost:3001';
-
 export default function EditRifaPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -44,7 +42,7 @@ export default function EditRifaPage() {
         status: data.status,
       });
       if (data.prizeImage) {
-        setPreview(data.prizeImage.startsWith('http') ? data.prizeImage : `${BACKEND_URL}${data.prizeImage}`);
+        setPreview(data.prizeImage);
       }
       setLoading(false);
     });
@@ -60,16 +58,9 @@ export default function EditRifaPage() {
     try {
       const formData = new FormData();
       formData.append('file', file);
-      const token = (await import('@/lib/auth')).getAccessToken();
-      const res = await fetch(`${BACKEND_URL}/api/raffles/upload/image`, {
-        method: 'POST',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
+      const data = await api('/raffles/upload/image', { method: 'POST', body: formData });
       setForm((f) => ({ ...f, prizeImage: data.url }));
-      setPreview(`${BACKEND_URL}${data.url}`);
+      setPreview(data.url);
     } catch (err: any) {
       setError(err.message || 'Error al subir la imagen');
     } finally {
