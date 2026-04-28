@@ -6,7 +6,6 @@ import { useAuth } from '@/hooks/useAuth';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { API_URL } from '@/lib/constants';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -90,9 +89,7 @@ export default function LoginPage() {
             variant="outline"
             type="button"
             className="w-full h-12 border-white/10 hover:bg-white/5 text-white font-medium"
-            onClick={() => {
-              window.location.href = `${API_URL}/auth/google`;
-            }}
+            onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/auth/google` }
           >
             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
               <path
