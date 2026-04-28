@@ -3,10 +3,11 @@
 import { Ticket, Lock, Mail, UserPlus } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { API_URL } from '@/lib/constants';
 
 export default function RegisterPage() {
   const handleGoogleRegister = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/auth/google`;
+    window.location.href = `${API_URL}/auth/google`;
   };
 
   return (

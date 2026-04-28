@@ -5,7 +5,9 @@ import { NextRequest, NextResponse } from 'next/server';
  * hacia el backend NestJS, evitando problemas de CORS y URLs hardcodeadas.
  */
 
-const BACKEND_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000'}/api`;
+import { BACKEND_URL } from '@/lib/constants';
+
+const PROXY_BACKEND_URL = `${BACKEND_URL}/api`;
 
 async function handleProxy(
   request: NextRequest,
@@ -16,7 +18,7 @@ async function handleProxy(
   const searchParams = request.nextUrl.search;
   
   // Construir la URL final del backend
-  const targetUrl = `${BACKEND_URL}/${pathString}${searchParams}`;
+  const targetUrl = `${PROXY_BACKEND_URL}/${pathString}${searchParams}`;
 
   // Clonar headers y limpiar los que Next.js o el navegador puedan interferir
   const headers = new Headers(request.headers);

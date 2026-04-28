@@ -9,9 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { api } from '@/lib/api';
-import { Raffle, TicketOrder } from '@/lib/types';
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') ?? 'http://localhost:3001';
+import { BACKEND_URL } from '@/lib/constants';
 
 const orderStatusVariant: Record<string, 'secondary' | 'success' | 'destructive'> = {
   pending: 'secondary',

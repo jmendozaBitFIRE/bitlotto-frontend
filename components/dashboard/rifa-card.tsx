@@ -3,8 +3,7 @@ import { ExternalLink, Pencil, Eye } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Raffle } from '@/lib/types';
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') ?? 'http://localhost:4000';
+import { BACKEND_URL } from '@/lib/constants';
 
 const statusVariant: Record<string, 'success' | 'secondary' | 'destructive'> = {
   active: 'success',

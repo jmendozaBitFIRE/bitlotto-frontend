@@ -5,8 +5,7 @@ import { useParams } from 'next/navigation';
 import { Loader2, Upload, CheckCircle2 } from 'lucide-react';
 import { PublicRaffle, Ticket } from '@/lib/types';
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api';
-const BACKEND = API.replace('/api', '');
+import { API_URL as API, BACKEND_URL as BACKEND } from '@/lib/constants';
 const RESERVE_SECONDS = 15 * 60;
 
 type Phase = 'selecting' | 'reserved' | 'buyer-info' | 'payment' | 'done';
